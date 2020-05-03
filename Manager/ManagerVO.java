@@ -1,4 +1,4 @@
-package ParkingService.Manager;
+package EncoreTeamProject.Manager;
 
 public class ManagerVO {
 	String id, pw;		//°ü¸®ÀÎ id pw

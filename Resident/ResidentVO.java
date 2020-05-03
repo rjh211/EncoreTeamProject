@@ -1,4 +1,4 @@
-package ParkingService.Resident;
+package EncoreTeamProject.Resident;
 
 import java.util.ArrayList;
 

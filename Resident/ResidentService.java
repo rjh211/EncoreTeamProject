@@ -1,9 +1,9 @@
-package ParkingService.Resident;
+package EncoreTeamProject.Resident;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import ParkingService.Car.CarVO;
+import EncoreTeamProject.Car.CarVO;
 
 public interface ResidentService {
 	public ArrayList<CarVO> SearchMyCar(Scanner sc);		//내차 검색

@@ -1,4 +1,4 @@
-package ParkingService.ParkingLot;
+package EncoreTeamProject.ParkingLot;
 
 import java.time.format.DateTimeFormatter;
 

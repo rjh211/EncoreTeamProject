@@ -1,4 +1,4 @@
-package ParkingService.ParkingLot;
+package EncoreTeamProject.ParkingLot;
 
 public interface ParkingLotDao {
 	public void Insert();				//ÁÖÂ÷Àå data insert

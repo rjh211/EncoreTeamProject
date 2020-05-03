@@ -1,9 +1,9 @@
-package ParkingService;
+package EncoreTeamProject;
 
 import java.util.Scanner;
 
-import ParkingService.Manager.ManagerMain;
-import ParkingService.Resident.ResidentMain;
+import EncoreTeamProject.Manager.ManagerMain;
+import EncoreTeamProject.Resident.ResidentMain;
 
 public class ParkingServiceMain {
 
