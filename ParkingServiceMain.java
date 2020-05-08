@@ -14,7 +14,7 @@ public class ParkingServiceMain {
 		ManagerMain mMain = null;
 		int select = 0;
 		do{
-			System.out.println("1.입주민 2.관리자 3.종료");
+			System.out.println("1.로그인 2.로그아웃 3.종료");
 			select = sc.nextInt();
 			switch(select){
 				case 1:
