@@ -12,7 +12,7 @@ public class ParkingServiceMain {
 		Scanner sc = new Scanner(System.in);
 		ResidentMain rMain = null;
 		ManagerMain mMain = null;
-		int select = 0;
+		int select = 0; //asdfasdfasd
 		do{
 			System.out.println("1.로그인 2.로그아웃 3.종료");
 			select = sc.nextInt();
