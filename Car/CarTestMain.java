@@ -1,5 +1,4 @@
 package EncoreTeamProject.Car;
-
 import java.util.Scanner;
 
 public class CarTestMain {
