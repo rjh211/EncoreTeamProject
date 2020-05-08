@@ -1,54 +1,67 @@
 package EncoreTeamProject.Car;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class CarVO {
-	private int carNum;							//차번호
-	private String color, size;					//차 색깔, 크기
-	private DateTimeFormatter enrollDate;		//등록일자
-	private boolean guest;						//방문객 여부 방문객일시 true, 입주민일경우 false
+	private int carNum;
+	private String carColor, carSize, id;
+	LocalDateTime carEnrollDate;
+	boolean guest, isPayed;
 	public CarVO(){}
-	public CarVO(int carNum, String color, String size, DateTimeFormatter enrollDate, boolean guest){
+	public CarVO(int carNum, String carColor, String carSize, String id, boolean guest, boolean isPayed){
 		this.carNum = carNum;
-		this.color = color;
-		this.size = size;
-		this.enrollDate = enrollDate;
+		this.carColor = carColor;
+		this.carSize = carSize;
+		this.id = id;
 		this.guest = guest;
+		this.isPayed = isPayed;
 	}
-	public int getCar() {
+	public int getCarNum() {
 		return carNum;
 	}
-	public void setCar(int car) {
-		this.carNum = car;
+	public void setCarNum(int carNum) {
+		this.carNum = carNum;
 	}
-	public String getColor() {
-		return color;
+	public String getCarColor() {
+		return carColor;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setCarColor(String carColor) {
+		this.carColor = carColor;
 	}
-	public String getSize() {
-		return size;
+	public String getCarSize() {
+		return carSize;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setCarSize(String carSize) {
+		this.carSize = carSize;
 	}
-	public DateTimeFormatter getEnrollDate() {
-		return enrollDate;
+	public String getId() {
+		return id;
 	}
-	public void setEnrollDate(DateTimeFormatter enrollDate) {
-		this.enrollDate = enrollDate;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public boolean getGuest() {
+	public LocalDateTime getCarEnrollDate() {
+		return carEnrollDate;
+	}
+	public void setCarEnrollDate(LocalDateTime carEnrollDate) {
+		this.carEnrollDate = carEnrollDate;
+	}
+	public boolean isGuest() {
 		return guest;
 	}
-	public void setGeust(boolean external) {
-		this.guest = external;
+	public void setGuest(boolean guest) {
+		this.guest = guest;
+	}
+	public boolean isPayed() {
+		return isPayed;
+	}
+	public void setPayed(boolean isPayed) {
+		this.isPayed = isPayed;
 	}
 	@Override
 	public String toString() {
-		return "CarVO [car=" + carNum + ", color=" + color + ", size=" + size + ", enrollDate=" + enrollDate
-				+ ", external=" + guest + "]";
+		return "CarVO [carNum=" + carNum + ", carColor=" + carColor + ", carSize=" + carSize + ", id=" + id
+				+ ", carEnrollDate=" + carEnrollDate + ", guest=" + guest + ", isPayed=" + isPayed + "]";
 	}
 	
 }
