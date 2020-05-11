@@ -8,17 +8,17 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import EncoreTeamProject.dbconn.DBConn;
+import EncoreTeamProject.DataBaseConnect;
 
 
 
 public class ComDaoImpl implements ComDao {
-    private DBConn db;
+    private DataBaseConnect db;
     //private Member m;
     
     
     public ComDaoImpl() {
-    	db=DBConn.getInstance();
+    	db=DataBaseConnect.getInstance();
     }
 	
 	@Override
