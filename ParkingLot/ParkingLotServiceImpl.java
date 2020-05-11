@@ -22,7 +22,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 		int carNum = sc.nextInt();
 		ParkingLotVO pvo = pDao.SelectByCarnumforParkingLot(carNum);
 		cvo = cDao.SelectByNum(carNum);
-		if(cvo != null){						//등록된 차량과비교
+		
+		if(cvo.getIsAccepted() == 0 || cvo.getIsAccepted() == -1){
+			System.out.println("등록되지 않은 번호입니다.");
+			return;
+		}
+		
+		if(cvo != null){			//등록된 차량과비교
 			if(!cvo.isPayed()){
 				if(!Settlement(sc, pvo)){
 					System.out.println("입장 불가");

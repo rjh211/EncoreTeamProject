@@ -93,5 +93,23 @@ public class CarServiceImpl implements CarService {
 			cDao.Update(cvo, newNum);
 		}
 	}
+	@Override
+	public void OutStandingDoc(Scanner sc) {		//parkinglot에서 미결제인 차량은 입장불가 기능 추가
+		// TODO Auto-generated method stub
+		ArrayList<CarVO> carList = cDao.selectByOutstandingDoc();
+		for(CarVO car : carList){
+			System.out.println(car);
+		}
+		System.out.println("차번호를 입력하세요.");
+		int carNum = sc.nextInt();
+		for(CarVO car : carList){
+			if(car.getCarNum() == carNum){
+				System.out.println("-1: 보류 , 0: 반려, 1: 승인");
+				int isAccept = sc.nextInt();
+				car.setIsAccepted(isAccept);
+				cDao.UpdateForProcessDoc(isAccept, carNum);			//전용 update생성
+			}
+		}
+	}
 
 }
