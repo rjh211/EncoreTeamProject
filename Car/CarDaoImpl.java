@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+<<<<<<< Updated upstream
 import p0429.DataBaseConnect;
+=======
+import EncoreTeamProject.DataBaseConnect;
+>>>>>>> Stashed changes
 
 public class CarDaoImpl implements CarDao {
 	private DataBaseConnect db;
