@@ -16,6 +16,12 @@ public class CarVO {
 		this.guest = guest;
 		this.isPayed = isPayed;
 	}
+	public int getIsAccepted(){
+		return this.isAccepted;
+	}
+	public void setIsAccepted(int isAccepted){
+		this.isAccepted = isAccepted;
+	}
 	public int getCarNum() {
 		return carNum;
 	}
