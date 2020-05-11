@@ -194,6 +194,28 @@ public class CarDaoImpl implements CarDao {
 			}
 		}
 	}
+	@Override
+	public void ChangePaymentState(CarVO cvo) {
+		// TODO Auto-generated method stub
+		int payed = cvo.isPayed() ? 1 : 0;
+		String sql = "update car set ispayed = " + payed +"where carnumber = " + cvo.getCarNum();
+		Connection conn = db.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();		//쓰기 실행 , executeQuere => 읽기 실행 select시 사용
+			System.out.println("수정 성공");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 
 }

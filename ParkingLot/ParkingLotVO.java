@@ -3,19 +3,28 @@ package EncoreTeamProject.ParkingLot;
 import java.time.LocalDateTime;
 
 public class ParkingLotVO {
-	private static ParkingLotVO parkingLot = new ParkingLotVO(); // 여러 객체를 생성하지 못하게 singleton 사용
-	private ParkingLotVO(){}
-	public static ParkingLotVO getInstance(){
-		return parkingLot;										//주차장 객체 반환
+	public ParkingLotVO(){}
+	public ParkingLotVO(int seq, LocalDateTime inputTime, LocalDateTime outputTime, int pay, int carNumber){
+		this.seq = seq;
+		this.inputTime = inputTime;
+		this.outputTime = outputTime;
+		this.pay = pay;
+		this.carNumber = carNumber;
 	}
-
+	
 	final int smallCarParkingFee = 500;		//소형차 요금
 	final int middleCarParkingFee = 700;	//중형차 요금
 	final int largeCarParkingFee = 1000;	//대형차 요금
 	
-	LocalDateTime inputTime, outputTime;
-	int pay, carNumber;
 	
+	LocalDateTime inputTime, outputTime;
+	int seq, pay, carNumber;
+	public int getSeq(){
+		return this.seq;
+	}
+	public void setSeq(int seq){
+		this.seq = seq;
+	}
 	public LocalDateTime getInputTime() {
 		return inputTime;
 	}

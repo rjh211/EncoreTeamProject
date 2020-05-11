@@ -1,7 +1,6 @@
 package EncoreTeamProject.Community;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public class ComVo {
 	private int num;

@@ -9,4 +9,5 @@ public interface CarDao {
 	public ArrayList<CarVO> SelectById(String id);					//db data select
 	public ArrayList<CarVO> SelectAll();	
 	public void Update(CarVO cvo, int newNum);					//db data update
+	public void ChangePaymentState(CarVO cvo);
 }
