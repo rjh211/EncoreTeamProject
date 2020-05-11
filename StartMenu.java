@@ -6,12 +6,12 @@ import EncoreTeamProject.Member.MemberDao;
 import EncoreTeamProject.Member.MemberDaoImpl;
 import EncoreTeamProject.Member.MemberService;
 import EncoreTeamProject.Member.MemberServiceImpl;
-import EncoreTeamProject.Member.Menu;
+//import EncoreTeamProject.Member.Menu;
 
 public class StartMenu {
 	MemberDao mDao;
 	MemberService mService;
-	Menu menu;
+	//Menu menu;
 	
 	
 	public StartMenu() {
@@ -47,10 +47,10 @@ public class StartMenu {
 	    pw = sc.next();
 	    
 	    MemberDaoImpl mdi = new MemberDaoImpl();
-	    Menu m = new Menu();
+	    //Menu m = new Menu();
 	    if (mdi.selectByID(id) != null && ((mdi.selectByID(id)).getPw()).equals(pw) && ((mdi.selectByID(id)).getRegister()==1) ) {
 	    	System.out.println("You are logged in");
-	    	m.run(sc);
+	    	//m.run(sc);
 	    } else if (mdi.selectByID(id) != null && ((mdi.selectByID(id)).getPw()).equals(pw) && ((mdi.selectByID(id)).getRegister()==0) ) {
 	    	System.out.println("아직 가입이 승인 되지 않았습니다.");
 	    } else if (mdi.selectByID(id) == null) {

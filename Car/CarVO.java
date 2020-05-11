@@ -3,7 +3,7 @@ package EncoreTeamProject.Car;
 import java.time.LocalDateTime;
 
 public class CarVO {
-	private int carNum;
+	private int carNum, isAccepted;		//isAccepted : -1 :πÃ√≥∏Æ,  0: reject , 1: accept
 	private String carColor, carSize, id;
 	LocalDateTime carEnrollDate;
 	boolean guest, isPayed;
