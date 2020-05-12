@@ -23,7 +23,7 @@ public class ManagerMenu {
 			menu = sc.nextInt();
 			switch (menu) {
 			case 1:
-				//접수된 외부차량임시등록 조회
+				//접수된 외부차량임시등록 전체출력
 				break;
 			case 2:	
 				//외부차량임시등록
