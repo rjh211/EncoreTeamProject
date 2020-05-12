@@ -3,17 +3,20 @@ package EncoreTeamProject.Community;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import EncoreTeamProject.Member.MemberVO;
+
 
 
 
 
 public class ComServiceImpl implements ComService {
 	private ComDao dao;
-	//private Member m;
-	public static String id = "ddd";
+	private MemberVO m;
+	//public static String id = "ddd";
 	
 	public ComServiceImpl(){
 		dao = new ComDaoImpl();
+		m = new MemberVO();
 	}
 	
 	
@@ -28,7 +31,7 @@ public class ComServiceImpl implements ComService {
 		
 		System.out.print("contents:");
 		cv.setContents(sc.next());
-		cv.setName(id);
+		cv.setName(m.getId());
 		
 		dao.insert(cv);
 		
@@ -82,7 +85,7 @@ public class ComServiceImpl implements ComService {
 		System.out.print("edit num:");
 		cv.setNum(sc.nextInt());
 		ComVo vo = dao.selectByNum(cv.getNum());
-		if(id.equals(vo.getName())){
+		if(m.getId().equals(vo.getName())){
 		
 		System.out.print("new title:");
 		cv.setTitle(sc.next());
@@ -100,8 +103,8 @@ public class ComServiceImpl implements ComService {
 		System.out.print("delete num:");
 		int num = sc.nextInt();
 		ComVo vo = dao.selectByNum(num);
-		String str = "admin";
-		if(id.equals(vo.getName())||str.equals(vo.getName())){
+		String str = "a";
+		if(m.getId().equals(vo.getName())||str.equals(vo.getName().substring(0, 1))){
 		dao.delete(num);
 		}else{
 		System.out.print("not found");}
