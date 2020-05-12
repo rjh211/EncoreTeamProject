@@ -51,7 +51,6 @@ public interface MemberService {
 
 	void signUp(Scanner sc);
 
-	int login(Scanner sc);
 	
 	
 	//접수된 외부차량임시등록 전체출력
