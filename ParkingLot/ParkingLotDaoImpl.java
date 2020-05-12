@@ -12,6 +12,7 @@ import EncoreTeamProject.DataBaseConnect;
 
 public class ParkingLotDaoImpl implements ParkingLotDao {
 	private DataBaseConnect db;
+	private final int MaxParkingSpace = 100;		//주차가능대수
 	
 	public ParkingLotDaoImpl(){
 		db = DataBaseConnect.getInstance();
@@ -220,6 +221,34 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public int ShowParkingAreaCount() {
+		// TODO Auto-generated method stub
+		String sql = "select count(*) from parkinglot where outtime is null"; 
+		Connection conn = db.getConnect();
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs  = pstmt.executeQuery();
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return MaxParkingSpace - count;
 	}
 
 

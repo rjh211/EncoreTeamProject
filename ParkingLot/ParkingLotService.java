@@ -9,4 +9,5 @@ public interface ParkingLotService {
 	public void ShowInformBySeq(Scanner sc);
 	public void DeleteInform(Scanner sc);
 	public boolean Settlement(Scanner sc, ParkingLotVO pvo);
+	public void ShowParkingState();
 }

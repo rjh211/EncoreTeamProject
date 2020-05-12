@@ -16,7 +16,6 @@ public class ParkingLotVO {
 	final int middleCarParkingFee = 700;	//중형차 요금
 	final int largeCarParkingFee = 1000;	//대형차 요금
 	
-	
 	LocalDateTime inputTime, outputTime;
 	int seq, pay, carNumber;
 	public int getSeq(){

@@ -104,5 +104,10 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 		}
 		return pay;
 	}
+	@Override
+	public void ShowParkingState() {
+		// TODO Auto-generated method stub
+		System.out.println("빈 자리의 개수는 " + pDao.ShowParkingAreaCount()+"자리 입니다.");
+	}
 
 }

@@ -18,7 +18,7 @@ public class CarDaoImpl implements CarDao {
 	public void Insert(CarVO cvo) {
 		// TODO Auto-generated method stub
 		
-		String sql = "insert into car values(?,?,?,?,?,?,?)";
+		String sql = "insert into car values(?,?,?,?,?,?,?,?)";
 		//1. db 커넥션 수립
 		Connection conn = db.getConnect();
 		try {
@@ -32,6 +32,7 @@ public class CarDaoImpl implements CarDao {
 			pstmt.setTimestamp(5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.setInt(6, cvo.isGuest() ? 1 : 0);
 			pstmt.setInt(7, cvo.isPayed() ? 1 : 0);
+			pstmt.setInt(8, -1);
 			//4. 쿼리 실행
 			pstmt.executeUpdate();		//쓰기 실행 , executeQuere => 읽기 실행 select시 사용
 			System.out.println("데이터 삽입 성공");

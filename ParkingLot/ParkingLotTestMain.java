@@ -8,7 +8,7 @@ public class ParkingLotTestMain {
 		Scanner sc = new Scanner(System.in);
 		int select = 10;
 		do{
-			System.out.println("1.입차 2.출차 3.모든 정보 출력 4.시퀀스로 데이터 삭제 5.시퀀스로 데이터 조회 10.종료");
+			System.out.println("1.입차 2.출차 3.모든 정보 출력 4.시퀀스로 데이터 삭제 5.시퀀스로 데이터 조회 6.주차 가능 대수 확인 10.종료");
 			select = sc.nextInt();
 			switch(select){
 			case 1:
@@ -25,6 +25,9 @@ public class ParkingLotTestMain {
 				break;
 			case 5:
 				pService.ShowInformBySeq(sc);
+				break;
+			case 6:
+				pService.ShowParkingState();
 				break;
 			case 10:
 				System.out.println("종료합니다.");

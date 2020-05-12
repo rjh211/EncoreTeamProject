@@ -11,4 +11,5 @@ public interface ParkingLotDao {
 	public ArrayList<ParkingLotVO> SelectAll();		//주차장 data select
 	public void UpdateOutTime(int carNum);				//주차장 data update
 	public void UpdateAllBySeq(ParkingLotVO pvo);				//주차장 data update
+	public int ShowParkingAreaCount();
 }
