@@ -57,7 +57,7 @@ public class MemberMenu {
 			}
 		}
 	}
-	public void run2 (Scanner sc){
+/*	public void run2 (Scanner sc){
 		boolean flag = true;
 		int menu = 0;		
 		String str = "1.로그인 2.회원가입 3.종료";
@@ -77,5 +77,5 @@ public class MemberMenu {
 				flag = false;
 			}
 		}
-	}
+	}*/
 }
