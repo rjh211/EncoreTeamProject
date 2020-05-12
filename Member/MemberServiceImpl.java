@@ -266,40 +266,6 @@ public class MemberServiceImpl implements MemberService {
 		mDao.insertSignUp(m);
 	}
 	
-	@Override
-	public int login(Scanner sc) {
-		
-
-		while (true) {
-			System.out.print("id:");
-			String loginId = sc.next();
-			MemberVO v = mDao.selectByID(loginId);
-			if (v == null) {
-				System.out.println("잘못된 id입니다.다시입력하세요.");
-
-			} else if (loginId.equals(v.getId())) {
-				
-				m=v;
-				System.out.print("pw:");
-				String pw = sc.next();
-				
-				if (pw.equals(v.getPw())) {
-					
-					if(v.getRegister()==1){
-						System.out.println("로그인 성공~");						
-						return 1;
-					}else{
-						System.out.println("관리인의 수락 필요합니다.");
-						return -1;
-					}
-					
-				} else {
-					System.out.println("틀린 pwd입니다. 다시 입력하세요.");
-				}
-			}
-		}
-
-	}
 
 	@Override
 	public void printTempCarRegisterAll() {

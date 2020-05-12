@@ -90,7 +90,7 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 	@Override
 	public ArrayList<ParkingLotVO> SelectByCarnumforHuman(int carNum) {
 		// TODO Auto-generated method stub
-		String sql = "* FROM parkinglot where carnum = " + carNum;
+		String sql = "select * FROM parkinglot where carnum = " + carNum;
 		ResultSet rs = null;
 		Connection conn = db.getConnect();
 		ArrayList<ParkingLotVO> pvoList = new ArrayList<ParkingLotVO>();
