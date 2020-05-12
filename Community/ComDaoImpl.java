@@ -26,9 +26,10 @@ public class ComDaoImpl implements ComDao {
 		String sql = "insert into community values(com_seq.nextval,?,?,?,?)";
 		
 		Connection conn = db.getConnect();
-		System.out.println(Timestamp.valueOf(LocalDateTime.now()));
+		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(2,com.getName());
 			pstmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.setString(3,com.getTitle());
