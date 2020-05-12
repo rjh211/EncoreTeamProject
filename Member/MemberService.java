@@ -40,9 +40,20 @@ public interface MemberService {
 	// 자차등록신청
 	public void insertMyCar(Scanner sc);
 	
+	//입주민 가입승인신청 목록출력
+	public void  printSingUpList();
+	
+	//입주민 가입신청 승인
+	public void acceptSignUP(Scanner sc);
+	
+	//입주민 가입승인신청 삭제
+	public void deleteSignUP(Scanner sc);
+	
 	void signUp(Scanner sc);
 
 	int login(Scanner sc);
+	
+	
 	
 	
 }
