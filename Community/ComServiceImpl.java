@@ -3,6 +3,7 @@ package EncoreTeamProject.Community;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import EncoreTeamProject.Member.MemberServiceImpl;
 import EncoreTeamProject.Member.MemberVO;
 
 
@@ -11,12 +12,11 @@ import EncoreTeamProject.Member.MemberVO;
 
 public class ComServiceImpl implements ComService {
 	private ComDao dao;
-	private MemberVO m;
-	//public static String id = "ddd";
+	
 	
 	public ComServiceImpl(){
 		dao = new ComDaoImpl();
-		m = new MemberVO();
+		
 	}
 	
 	
@@ -24,15 +24,14 @@ public class ComServiceImpl implements ComService {
 	@Override
 	public void addCom(Scanner sc) {
 		ComVo cv = new ComVo();
-		
-		
+		System.out.println(MemberServiceImpl.m.getId());
+		cv.setName(MemberServiceImpl.m.getId());
+		sc.nextLine();
 		System.out.print("title:");
-		cv.setTitle(sc.next());
-		
+		cv.setTitle(sc.nextLine());		
 		System.out.print("contents:");
-		cv.setContents(sc.next());
-		cv.setName(m.getId());
-		
+		cv.setContents(sc.nextLine());
+	
 		dao.insert(cv);
 		
 		
@@ -85,12 +84,13 @@ public class ComServiceImpl implements ComService {
 		System.out.print("edit num:");
 		cv.setNum(sc.nextInt());
 		ComVo vo = dao.selectByNum(cv.getNum());
-		if(m.getId().equals(vo.getName())){
+		if(MemberServiceImpl.m.getId().equals(vo.getName())){
 		
 		System.out.print("new title:");
-		cv.setTitle(sc.next());
+		sc.nextLine();
+		cv.setTitle(sc.nextLine());
 		System.out.print("new contents:");
-		cv.setContents(sc.next());
+		cv.setContents(sc.nextLine());
 		
 		dao.update(cv);
 		}else{
@@ -104,10 +104,10 @@ public class ComServiceImpl implements ComService {
 		int num = sc.nextInt();
 		ComVo vo = dao.selectByNum(num);
 		String str = "a";
-		if(m.getId().equals(vo.getName())||str.equals(vo.getName().substring(0, 1))){
+		if(MemberServiceImpl.m.getId().equals(vo.getName())||str.equals(vo.getName().substring(0, 1))){
 		dao.delete(num);
 		}else{
-		System.out.print("not found");}
+		System.out.print("권한자가 아닙니다.");}
 	}
 
 
