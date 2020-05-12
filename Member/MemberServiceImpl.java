@@ -298,6 +298,34 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	}
-	
+
+	@Override
+	public void printTempCarRegisterAll() {
+		// TODO Auto-generated method stub
+		ArrayList<CarVO> carList = mDao.SelectTempCar();
+		for (CarVO m : carList) {
+			System.out.println(m);
+		}
+	}
+
+	@Override
+	public void acceptCar(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("등록할 차량 번호를 입력하세요");
+		int carnumber = sc.nextInt();
+		mDao.updateCarAccept(carnumber);
+	}
+
+
+	@Override
+	public void printMyCarRegisterAll() {
+		// TODO Auto-generated method stub
+		ArrayList<CarVO> carList = mDao.SelectRegisterCar();
+		for (CarVO m : carList) {
+			System.out.println(m);
+		}
+	}
+
+
 
 }
