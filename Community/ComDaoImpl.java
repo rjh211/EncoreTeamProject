@@ -134,7 +134,7 @@ public class ComDaoImpl implements ComDao {
 
 	@Override
 	public ArrayList<ComVo> selectAll() {
-		String sql = "select * from community";
+		String sql = "select * from community order by num";
 		ArrayList<ComVo> list = new ArrayList<ComVo>();
 		ResultSet rs = null;
 		Connection conn = db.getConnect();

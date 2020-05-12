@@ -78,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberVO selectByID(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from member where id = '" + id + "' s ";
+		String sql = "select * from member where id = '" + id + "'  ";
 		ResultSet rs = null;
 		Connection conn = db.getConnect();
 		MemberVO m = null;
@@ -210,5 +210,59 @@ public class MemberDaoImpl implements MemberDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	@Override
+	public void insertSignUp(MemberVO m) {
+		String sql = "insert into member values (?,?,?,-1)";
+
+		Connection conn = db.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getId());
+			pstmt.setString(2, m.getPw());
+			pstmt.setInt(3, m.getPhoneNum());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public int checkId(String id) {
+		String sql = "select id from member where id = ?";
+
+		ResultSet rs = null;
+		Connection conn = db.getConnect();
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return -1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 1;
 	}
 }

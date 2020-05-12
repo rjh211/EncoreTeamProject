@@ -40,5 +40,9 @@ public interface MemberService {
 	// 자차등록신청
 	public void insertMyCar(Scanner sc);
 	
+	void signUp(Scanner sc);
+
+	int login(Scanner sc);
+	
 	
 }
