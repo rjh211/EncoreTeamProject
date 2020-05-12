@@ -199,6 +199,62 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	@Override
+	public void signUp(Scanner sc) {
+		MemberVO m = new MemberVO();
+		System.out.println("입주민 등록 신청");
+		while (true) {
+
+			System.out.print("id:");
+			String id = sc.next();
+			if (mDao.checkId(id) == 1) {
+				m.setId(id);
+				break;
+			} else {
+				System.out.println("이미 있는 id입니다.다시 입력해주세요.");
+			}
+		}
+		System.out.print("pwd:");
+		m.setPw(sc.next());
+
+		System.out.println("phonenum:");
+		m.setPhoneNum(sc.nextInt());
+		mDao.insertSignUp(m);
+	}
+
+	@Override
+	public int login(Scanner sc) {
+		MemberVO m = new MemberVO();
+
+		while (true) {
+			System.out.print("id:");
+			String id = sc.next();
+			MemberVO v = mDao.selectByID(id);
+			if (v == null) {
+				System.out.println("잘못된 id입니다.다시입력하세요.");
+
+			} else if (id.equals(v.getId())) {
+				m.setId(id);
+				System.out.print("pw:");
+				String pw = sc.next();
+				
+				if (pw.equals(v.getPw())) {
+					m.setPw(pw);
+					if(v.getRegister()==1){
+						System.out.println("로그인 성공~");
+						return 1;
+					}else{
+						System.out.println("관리인의 수락 필요합니다.");
+						return -1;
+					}
+					
+				} else {
+					System.out.println("틀린 pwd입니다. 다시 입력하세요.");
+				}
+			}
+		}
+
+	}
 	
 
 }
