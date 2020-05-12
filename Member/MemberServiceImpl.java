@@ -64,14 +64,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void printAll() {
+	public void printAll() { //입주민만 출력. 관리인은 DB에서 직접 관리.
 		// TODO Auto-generated method stub
 		ArrayList<MemberVO> memberList = mDao.selectAll();
 		for (MemberVO m : memberList) {
-			System.out.println(m);
+			if (m.getId().startsWith("a")) { // 관리인 id는 a로 시작하기로 설정.
+			} else {
+				System.out.println(m);
+			}
 		}
 	}
-
+	
 	@Override
 	public void editPW(Scanner sc) {
 		// TODO Auto-generated method stub
@@ -197,9 +200,49 @@ public class MemberServiceImpl implements MemberService {
 		id = sc.next();
 		
 		cDao.Insert(new CarVO(number, carColor, carSize, id, guest, isPayed));
-		
 	}
 	
+	@Override
+	public void printSingUpList() {
+		// TODO Auto-generated method stub
+		ArrayList<MemberVO> memberList = mDao.selectAll();
+		for (MemberVO m : memberList) {
+			if (m.getRegister() == 0) { 
+				System.out.println(m);
+			} 
+		}
+	}
+	
+	@Override
+	public void acceptSignUP(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.print("가입승인신청 리스트 중에서 가입승인할 id를 입력해주세요. id : ");
+		String id = sc.next();
+		MemberVO mVO = mDao.selectByID(id);
+		if (mVO == null) {
+			System.out.println("id를 다시 확인하고 입력해주세요");
+		} else if (mVO != null && mVO.getRegister() == 1) {
+			System.out.println("이미 가입승인된 아이디입니다.");
+		} else {
+			mVO.setRegister(1);	
+		}
+	}
+
+	@Override
+	public void deleteSignUP(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.print("가입승인신청 리스트 중에서 삭제할 id를 입력해주세요. id : ");
+		String id = sc.next();
+		MemberVO mVO = mDao.selectByID(id);
+		if (mVO == null) {
+			System.out.println("id를 다시 확인하고 입력해주세요");
+		} else if (mVO != null && mVO.getRegister() == 1) {
+			System.out.println("이미 가입승인된 아이디입니다.");
+		} else {
+			mDao.delete(mVO.getId());	
+		}
+	}
+
 	@Override
 	public void signUp(Scanner sc) {
 		MemberVO m = new MemberVO();
@@ -222,7 +265,7 @@ public class MemberServiceImpl implements MemberService {
 		m.setPhoneNum(sc.nextInt());
 		mDao.insertSignUp(m);
 	}
-
+	
 	@Override
 	public int login(Scanner sc) {
 		
@@ -257,6 +300,34 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	}
-	
+
+	@Override
+	public void printTempCarRegisterAll() {
+		// TODO Auto-generated method stub
+		ArrayList<CarVO> carList = mDao.SelectTempCar();
+		for (CarVO m : carList) {
+			System.out.println(m);
+		}
+	}
+
+	@Override
+	public void acceptCar(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("등록할 차량 번호를 입력하세요");
+		int carnumber = sc.nextInt();
+		mDao.updateCarAccept(carnumber);
+	}
+
+
+	@Override
+	public void printMyCarRegisterAll() {
+		// TODO Auto-generated method stub
+		ArrayList<CarVO> carList = mDao.SelectRegisterCar();
+		for (CarVO m : carList) {
+			System.out.println(m);
+		}
+	}
+
+
 
 }
