@@ -102,7 +102,7 @@ public class CarDaoImpl implements CarDao {
 		String sql = "select * from car where id = '" + id+"'";
 		ArrayList<CarVO> list = new ArrayList<CarVO>();
 		ResultSet rs = null;
-		Connection conn =db.getConnect();
+		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

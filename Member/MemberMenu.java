@@ -9,8 +9,8 @@ public class MemberMenu {
 	private MemberService mService; 
 	private CarService cService;
 	
-	public MemberMenu(MemberService mService) {
-		this.mService = mService;
+	public MemberMenu() {
+		this.mService = new MemberServiceImpl();
 		cService = new CarServiceImpl();
 	}
 	
