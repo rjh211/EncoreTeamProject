@@ -78,7 +78,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 		Duration duration = Duration.between(pvo.outputTime, pvo.inputTime);
 		int charge = Math.abs(pvo.largeCarParkingFee * (int)(duration.getSeconds()/60));					//자동차의 크기 추가
 		cvo = cDao.SelectByNum(pvo.getCarNumber()); 
-		if(!cvo.isPayed())			//어떤 cvo를 받는지 
+		if(!cvo.isPayed())			 
 			charge *= 1.2;
 		
 		pvo.setPay(charge);

@@ -13,7 +13,4 @@ public interface ParkingLotDao {
 	public void UpdateOutTime(int carNum);				//주차장 data update
 	public void UpdateAllBySeq(ParkingLotVO pvo);				//주차장 data update
 	
-	public Date SelectInTime(int carNum);
-	public Date SelectOutTime(int carNum);
-	
 }

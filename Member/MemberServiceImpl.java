@@ -1,7 +1,6 @@
 package EncoreTeamProject.Member;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 import EncoreTeamProject.Car.CarDao;
@@ -130,20 +129,19 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		System.out.println("입출차시간을 조회할 차번호를 입력하세오.");
 		int carNum = sc.nextInt();
-		pDao.SelectInTime(carNum);
-		pDao.SelectOutTime(carNum);
+		ParkingLotVO pvo = pDao.SelectByCarnumforParkingLot(carNum);
+		System.out.println("들어온 시간 : " + pvo.getInputTime());
+		System.out.println("나간 시간 : " + pvo.getOutputTime());
+		/*pDao.SelectInTime(carNum);
+		pDao.SelectOutTime(carNum);*/
 	}
 
 	@Override
 	public void printParkingFee(Scanner sc) {
 		// TODO Auto-generated method stub
 		System.out.println("주차요금을 조회할 차번호를 입력하세오.");
-		int carNum = sc.nextInt();
-		Date d1 = pDao.SelectInTime(carNum); 
-		Date d2 = pDao.SelectOutTime(carNum);
-		long diff = d1.getTime() - d2.getTime();
-		long hour = diff / (1000*60*60);
-		int charge = (int) (pvo.largeCarParkingFee * hour);
+		
+		int charge = pvo.getPay();
 		System.out.println("주차요금은 " + charge + "원 입니다.");
 	}
 
