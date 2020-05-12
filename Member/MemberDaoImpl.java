@@ -54,7 +54,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		String sql = "delete from member where id = " + id;
+		String sql = "delete from member where id = '" + id + "'  ";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

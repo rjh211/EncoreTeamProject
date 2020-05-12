@@ -26,30 +26,39 @@ public class MemberMenu {
 			menu = sc.nextInt();
 			switch (menu) {
 			case 1:
+				//자차조회
 				cService.ShowCarInformById(sc);
 				break;
 			case 2:	
+				//입출차시간조회
 				mService.inOutTime(sc);
 				break;
 			case 3:
+				//주차요금조회
 				mService.printParkingFee(sc);
 				break;
 			case 4:
+				//주차요금정산
 				mService.payParkingFee(sc);
 				break;
 			case 5:
+				//외부차량임시등록
 				mService.insertTempCar(sc);
 				break;
 			case 6:
+				//자차등록신청
 				mService.insertMyCar(sc);
 				break;
 			case 7:
+				//pw수정
 				mService.editPW(sc);
 				break;
 			case 8:
+				//전화번호수정
 				mService.editPhoneNum(sc);
 				break;
 			case 9:
+				//커뮤니티
 				com.run(sc);
 				break;
 			case 10:

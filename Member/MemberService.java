@@ -3,7 +3,7 @@ package EncoreTeamProject.Member;
 import java.util.Scanner;
 
 public interface MemberService {
-
+	
 	// 사용자 등록
 	public void addMember(Scanner sc);
 
@@ -18,12 +18,14 @@ public interface MemberService {
 
 	// 사용자 수정(ID 받아서 전화번호 수정)
 	public void editPhoneNum(Scanner sc);
-
+	
 	// 사용자 수정(ID 받아서 가입승인여부 수정)
 	public void editRegister(Scanner sc);
 
 	// ID 입력 받아서 삭제
 	public void delMember(Scanner sc);
+	
+	
 
 	// 입출차시간조회
 	public void inOutTime(Scanner sc);
@@ -34,7 +36,7 @@ public interface MemberService {
 	// 주차요금정산
 	public void payParkingFee(Scanner sc);
 
-	// 외부차량임시등록
+	// 외부차량임시등록신청
 	public void insertTempCar(Scanner sc);
 
 	// 자차등록신청
@@ -53,10 +55,10 @@ public interface MemberService {
 
 	
 	
-	//접수된 외부차량임시등록 전체출력
+	//접수된 외부차량임시등록 전체출력 
 	public void printTempCarRegisterAll();
 	
-	//외부차량임시등록승인(차량번호)
+	//차량등록승인(차량번호). 외부차량&자차.
 	public void acceptCar(Scanner sc);
 	
 	//접수된 자차등록 조회
