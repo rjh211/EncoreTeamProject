@@ -78,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberVO selectByID(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from member where id = " + id;
+		String sql = "select * from member where id = '" + id + "' s ";
 		ResultSet rs = null;
 		Connection conn = db.getConnect();
 		MemberVO m = null;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DataBaseConnect {
 	private static DataBaseConnect db = new DataBaseConnect();
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String url = "jdbc:oracle:thin:@localhost:1521:EncoreTeamProject";
 	private DataBaseConnect(){}
 	public static DataBaseConnect getInstance(){
 		return db;
@@ -16,7 +16,7 @@ public class DataBaseConnect {
 		Connection conn = null;
 		try {
 			Class.forName(driver);		//driver load
-			conn = DriverManager.getConnection(url, "hr", "hr");	//db 서비스의 주소, 계정, 비밀번호를 이용하여 세션수립
+			conn = DriverManager.getConnection(url, "charrles", "7276");	//db 서비스의 주소, 계정, 비밀번호를 이용하여 세션수립
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

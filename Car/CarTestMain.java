@@ -9,7 +9,7 @@ public class CarTestMain {
 		CarService cService = new CarServiceImpl();
 		int select = 10;
 		do{
-			System.out.println("1.차 입력  2.삭제 3.전체 차 출력 4.차 번호로 검색 5.아이디로 검색 6.차량 정보 수정 7.미결제 서류 확인 10.종료");
+			System.out.println("1.차 입력  2.삭제 3.전체 차 출력 4.차 번호로 검색 5.아이디로 검색 6.차량 정보 수정 10.종료");
 			select = sc.nextInt();
 			switch(select){
 			case 1:
@@ -29,9 +29,6 @@ public class CarTestMain {
 				break;
 			case 6:
 				cService.UpdateCarInform(sc);
-				break;
-			case 7:
-				cService.OutStandingDoc(sc);
 				break;
 			case 10:
 				System.out.println("프로그램 종료");

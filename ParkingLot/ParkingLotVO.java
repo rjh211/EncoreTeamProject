@@ -12,9 +12,10 @@ public class ParkingLotVO {
 		this.carNumber = carNumber;
 	}
 	
-	final int smallCarParkingFee = 500;		//소형차 요금
-	final int middleCarParkingFee = 700;	//중형차 요금
-	final int largeCarParkingFee = 1000;	//대형차 요금
+	public final int smallCarParkingFee = 500;		//소형차 요금
+	public final int middleCarParkingFee = 700;	//중형차 요금
+	public final int largeCarParkingFee = 1000;	//대형차 요금
+	
 	
 	LocalDateTime inputTime, outputTime;
 	int seq, pay, carNumber;

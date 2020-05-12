@@ -1,6 +1,7 @@
 package EncoreTeamProject.ParkingLot;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface ParkingLotDao {
 	public void Insert(int carNum);				//주차장 data insert
@@ -11,5 +12,8 @@ public interface ParkingLotDao {
 	public ArrayList<ParkingLotVO> SelectAll();		//주차장 data select
 	public void UpdateOutTime(int carNum);				//주차장 data update
 	public void UpdateAllBySeq(ParkingLotVO pvo);				//주차장 data update
-	public int ShowParkingAreaCount();
+	
+	public Date SelectInTime(int carNum);
+	public Date SelectOutTime(int carNum);
+	
 }

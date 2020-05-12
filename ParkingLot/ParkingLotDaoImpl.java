@@ -4,15 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import EncoreTeamProject.DataBaseConnect;
 
 
 public class ParkingLotDaoImpl implements ParkingLotDao {
 	private DataBaseConnect db;
-	private final int MaxParkingSpace = 100;		//주차가능대수
 	
 	public ParkingLotDaoImpl(){
 		db = DataBaseConnect.getInstance();
@@ -224,32 +226,38 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 	}
 
 	@Override
-	public int ShowParkingAreaCount() {
+	public Date SelectInTime(int carNum) { // 차번호로 inTime 출력. Timestamp 형식을 출력가능한 형태로 변환
 		// TODO Auto-generated method stub
-		String sql = "select count(*) from parkinglot where outtime is null"; 
+		String sql = "select intime from parkinglot where carNum = " + carNum ;
 		Connection conn = db.getConnect();
-		ResultSet rs = null;
-		int count = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			rs  = pstmt.executeQuery();
-			if(rs.next()){
-				count = rs.getInt(1);
-			}
+			pstmt.executeQuery();
+			java.sql.Timestamp inTime = (Timestamp) new java.util.Date();
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
+			System.out.println(sdf.format(inTime));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		
-		return MaxParkingSpace - count;
+		return null;
 	}
 
-
+	@Override
+	public Date SelectOutTime(int carNum) { // 차번호로 outTime 출력. Timestamp 형식을 출력가능한 형태로 변환
+		// TODO Auto-generated method stub
+		String sql = "select outtime from parkinglot where carNum = " + carNum ;
+		Connection conn = db.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.executeQuery();
+			java.sql.Timestamp outTime = (Timestamp) new java.util.Date();
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(sdf.format(outTime));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
