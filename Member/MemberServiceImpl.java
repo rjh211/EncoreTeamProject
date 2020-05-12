@@ -198,6 +198,48 @@ public class MemberServiceImpl implements MemberService {
 		cDao.Insert(new CarVO(number, carColor, carSize, id, guest, isPayed));
 		
 	}
+
+	@Override
+	public void CarDataAccept(Scanner sc) {
+		// TODO Auto-generated method stub
+
+		int number;
+		ArrayList<CarVO> carList = mDao.SelectAllInsider();
+		for (CarVO car : carList) {
+			System.out.println(car);
+		}
+		System.out.println("Please input car number for approving");
+		number = sc.nextInt();
+		mDao.GrantCar(number);
+		System.out.println("Approved!!");
+	}
+
+	@Override
+	public void OutCarDataAccept(Scanner sc) {
+		// TODO Auto-generated method stub
+		int number;
+		ArrayList<CarVO> carList = mDao.SelectAllOutRequ();
+		for (CarVO car : carList) {
+			System.out.println(car);
+		}
+		System.out.println("Please input car number for approving");
+		number = sc.nextInt();
+		mDao.GrantCar(number);
+		System.out.println("Approved!!");
+		
+	}
+
+	@Override
+	public void PrintAllOutCarData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void PrintAllCarData() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Override
 	public void signUp(Scanner sc) {

@@ -2,7 +2,7 @@ package EncoreTeamProject.Member;
 
 import java.util.Scanner;
 
-public class MemberTestMin {
+public class MemberTestMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

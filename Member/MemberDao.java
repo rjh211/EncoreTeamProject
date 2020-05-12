@@ -2,6 +2,8 @@ package EncoreTeamProject.Member;
 
 import java.util.ArrayList;
 
+import EncoreTeamProject.Car.CarVO;
+
 public interface MemberDao {
 	public void insert(MemberVO m); // 사용자 정보 입력
 
@@ -17,7 +19,13 @@ public interface MemberDao {
 
 	void updateRegister(MemberVO m, int register);
 
-	void insertSignUp(MemberVO m);
+	public void GrantCar(int number);
 
-	int checkId(String id);
+	public ArrayList<CarVO> SelectAllInsider();
+
+	public ArrayList<CarVO> SelectAllOutsider();
+
+//	public ArrayList<CarVO> SelectAllRequ();
+//
+//	public ArrayList<CarVO> SelectAllOutRequ();
 }

@@ -1,5 +1,6 @@
 package EncoreTeamProject.Member;
 
+import java.lang.reflect.Member;
 import java.util.Scanner;
 
 import EncoreTeamProject.Car.CarService;
@@ -7,14 +8,13 @@ import EncoreTeamProject.Car.CarServiceImpl;
 import EncoreTeamProject.Community.ComMenu;
 
 public class MemberMenu {
-	private MemberService mService; 
-	private CarService cService;
-	private ComMenu com;
+
+//	private MemberService mService; 
+//	private CarService cService;
 	
 	public MemberMenu() {
-		this.mService = new MemberServiceImpl();
-		cService = new CarServiceImpl();
-		com = new ComMenu();
+		MemberService mService = new MemberServiceImpl();
+		CarService cService = new CarServiceImpl();
 	}
 	
 	public void run(Scanner sc) {
@@ -48,6 +48,12 @@ public class MemberMenu {
 				break;
 			case 8:
 				mService.editPhoneNum(sc);
+				break;
+			case 10:
+				mService.CarDataAccept(sc);
+				break;
+			case 11:
+				mService.OutCarDataAccept(sc);
 				break;
 			case 9:
 				com.run(sc);
