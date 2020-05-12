@@ -18,7 +18,7 @@ public class CarDaoImpl implements CarDao {
 	public void Insert(CarVO cvo) {
 		// TODO Auto-generated method stub
 		
-		String sql = "insert into car values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into car values(?,?,?,?,?,?,?)";
 		//1. db 커넥션 수립
 		Connection conn = db.getConnect();
 		try {
@@ -32,7 +32,6 @@ public class CarDaoImpl implements CarDao {
 			pstmt.setTimestamp(5, java.sql.Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.setInt(6, cvo.isGuest() ? 1 : 0);
 			pstmt.setInt(7, cvo.isPayed() ? 1 : 0);
-			pstmt.setInt(8, -1);
 			//4. 쿼리 실행
 			pstmt.executeUpdate();		//쓰기 실행 , executeQuere => 읽기 실행 select시 사용
 			System.out.println("데이터 삽입 성공");
@@ -196,29 +195,6 @@ public class CarDaoImpl implements CarDao {
 		}
 	}
 	@Override
-	public void UpdateForProcessDoc(int result, int carNum) {
-		// TODO Auto-generated method stub
-		String sql = "update car set isaccepted = ? where carnumber = " + carNum;
-		Connection conn = db.getConnect();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, result);
-			pstmt.executeUpdate();		//쓰기 실행 , executeQuere => 읽기 실행 select시 사용
-			System.out.println("수정 성공");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	@Override
 	public void ChangePaymentState(CarVO cvo) {
 		// TODO Auto-generated method stub
 		int payed = cvo.isPayed() ? 1 : 0;
@@ -239,41 +215,6 @@ public class CarDaoImpl implements CarDao {
 				e.printStackTrace();
 			}
 		}
-	}
-	@Override
-	public ArrayList<CarVO> selectByOutstandingDoc() {
-		// TODO Auto-generated method stub
-		String sql = "select * from car where isaccepted = -1";
-		ArrayList<CarVO> list = new ArrayList<CarVO>();
-		ResultSet rs = null;
-		Connection conn =db.getConnect();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()){	//rs.next() 검색 결과에서 줄 이동
-				int num = rs.getInt(1);
-				String id = rs.getString(2);
-				String carColor = rs.getString(3);
-				String carSize = rs.getString(4);
-				LocalDateTime carEnrollDate = rs.getTimestamp(5).toLocalDateTime();
-				boolean guest = rs.getInt(6) == 1 ? true: false;
-				boolean isPayed = rs.getInt(7) == 1? true : false;
-				CarVO cvo = new CarVO(num,carColor,carSize, id, guest, isPayed);
-				cvo.setCarEnrollDate(carEnrollDate);
-				list.add(cvo);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return list;
 	}
 
 

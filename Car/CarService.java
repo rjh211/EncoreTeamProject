@@ -9,5 +9,4 @@ public interface CarService {
 	public void ShowCarInformBynum(Scanner sc);
 	public void ShowCarInformById(Scanner sc);
 	public void UpdateCarInform(Scanner sc);
-	public void OutStandingDoc(Scanner sc);
 }

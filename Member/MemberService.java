@@ -20,9 +20,25 @@ public interface MemberService {
 	public void editPhoneNum(Scanner sc);
 	
 	// 사용자 수정(ID 받아서 가입승인여부 수정)
-		public void editRegister(Scanner sc);
+	public void editRegister(Scanner sc);
 	
 	// ID 입력 받아서 삭제
 	public void delMember(Scanner sc);
+	
+	// 입출차시간조회
+	public void inOutTime(Scanner sc);
+	
+	// 주차요금조회
+	public void printParkingFee(Scanner sc);
+	
+	// 주차요금정산
+	public void payParkingFee(Scanner sc);
+	
+	// 외부차량임시등록
+	public void insertTempCar(Scanner sc);
+	
+	// 자차등록신청
+	public void insertMyCar(Scanner sc);
+	
 	
 }

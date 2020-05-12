@@ -1,13 +1,31 @@
 package EncoreTeamProject.Member;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+
+import EncoreTeamProject.Car.CarDao;
+import EncoreTeamProject.Car.CarDaoImpl;
+import EncoreTeamProject.Car.CarVO;
+import EncoreTeamProject.ParkingLot.ParkingLotDao;
+import EncoreTeamProject.ParkingLot.ParkingLotDaoImpl;
+import EncoreTeamProject.ParkingLot.ParkingLotService;
+import EncoreTeamProject.ParkingLot.ParkingLotServiceImpl;
+import EncoreTeamProject.ParkingLot.ParkingLotVO;
 
 public class MemberServiceImpl implements MemberService {
 	private MemberDao mDao;
+	private CarDao cDao;
+	private ParkingLotVO pvo;
+	private ParkingLotDao pDao;
+	private ParkingLotService pService;
 	
 	public MemberServiceImpl() {
 		mDao = new MemberDaoImpl();
+		cDao = new CarDaoImpl();
+		pvo = new ParkingLotVO();
+		pDao = new ParkingLotDaoImpl();
+		pService = new ParkingLotServiceImpl();
 	}
 
 	public MemberServiceImpl(MemberDaoImpl memberDaoImpl) {
@@ -106,5 +124,83 @@ public class MemberServiceImpl implements MemberService {
 		String id = sc.next();
 		mDao.delete(id);
 	}
+
+	@Override
+	public void inOutTime(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("입출차시간을 조회할 차번호를 입력하세오.");
+		int carNum = sc.nextInt();
+		pDao.SelectInTime(carNum);
+		pDao.SelectOutTime(carNum);
+	}
+
+	@Override
+	public void printParkingFee(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("주차요금을 조회할 차번호를 입력하세오.");
+		int carNum = sc.nextInt();
+		Date d1 = pDao.SelectInTime(carNum); 
+		Date d2 = pDao.SelectOutTime(carNum);
+		long diff = d1.getTime() - d2.getTime();
+		long hour = diff / (1000*60*60);
+		int charge = (int) (pvo.largeCarParkingFee * hour);
+		System.out.println("주차요금은 " + charge + "원 입니다.");
+	}
+
+	@Override
+	public void payParkingFee(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("주차요금을 정산할 차번호를 입력하세오.");
+		int carNum = sc.nextInt();
+		pService.Settlement(sc, pDao.SelectByCarnumforParkingLot(carNum));
+	}
+
+	@Override
+	public void insertTempCar(Scanner sc) {
+		// TODO Auto-generated method stub
+		System.out.println("외부차량임시등록을 진행합니다.");
+		int number = 0;
+		String carColor = "r";
+		String carSize = "s";
+		boolean guest = true;
+		boolean isPayed = false;
+		String id = "abcd";
+		
+		System.out.println("차번호를 입력하시오");
+		number = sc.nextInt();
+		System.out.println("차 색깔을 입력하시오");
+		carColor = sc.next();
+		System.out.println("차 크기를 입력하시오");
+		carSize= sc.next();
+		System.out.println("id 입력");
+		id = sc.next();
+		
+		cDao.Insert(new CarVO(number, carColor, carSize, id, guest, isPayed));
+	}
+
+	@Override
+	public void insertMyCar(Scanner sc) {
+		// TODO Auto-generated method stub
+		int number = 0;
+		String carColor = "r";
+		String carSize = "s";
+		boolean guest = false;
+		boolean isPayed = false;
+		String id = "abcd";
+		
+		System.out.println("차번호를 입력하시오");
+		number = sc.nextInt();
+		System.out.println("차 색깔을 입력하시오");
+		carColor = sc.next();
+		System.out.println("차 크기를 입력하시오");
+		carSize= sc.next();
+		System.out.println("id 입력");
+		id = sc.next();
+		
+		cDao.Insert(new CarVO(number, carColor, carSize, id, guest, isPayed));
+		
+	}
+	
+	
 
 }

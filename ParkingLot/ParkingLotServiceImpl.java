@@ -22,13 +22,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 		int carNum = sc.nextInt();
 		ParkingLotVO pvo = pDao.SelectByCarnumforParkingLot(carNum);
 		cvo = cDao.SelectByNum(carNum);
-		
-		if(cvo.getIsAccepted() == 0 || cvo.getIsAccepted() == -1){
-			System.out.println("등록되지 않은 번호입니다.");
-			return;
-		}
-		
-		if(cvo != null){			//등록된 차량과비교
+		if(cvo != null){						//등록된 차량과비교
 			if(!cvo.isPayed()){
 				if(!Settlement(sc, pvo)){
 					System.out.println("입장 불가");
@@ -103,11 +97,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 			cDao.ChangePaymentState(cvo);
 		}
 		return pay;
-	}
-	@Override
-	public void ShowParkingState() {
-		// TODO Auto-generated method stub
-		System.out.println("빈 자리의 개수는 " + pDao.ShowParkingAreaCount()+"자리 입니다.");
 	}
 
 }
