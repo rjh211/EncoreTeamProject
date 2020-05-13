@@ -23,7 +23,7 @@ public class ComDaoImpl implements ComDao {
 	
 	@Override
 	public void insert(ComVo com) {
-		String sql = "insert into community values(com_seq.nextval,?,?,?,?)";
+		String sql = "insert into community values(community_seq.nextval,?,?,?,?)";
 		
 		Connection conn = db.getConnect();
 		

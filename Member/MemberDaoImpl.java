@@ -107,7 +107,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public ArrayList<MemberVO> selectAll() {
 		// TODO Auto-generated method stub
-		String sql = "select * from member";
+		String sql = "select * from member where register = 1";
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		ResultSet rs = null;
 		Connection conn = db.getConnect();
@@ -139,14 +139,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updatePW(MemberVO m, String newPW) {
 		// TODO Auto-generated method stub
-		String sql = "update member set pw = ?";
+		String sql = "update member set pw = ? where id = '" +m.getId()+"'";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getId());
-			pstmt.setString(2, newPW);
-			pstmt.setInt(3, m.getPhoneNum());
-			pstmt.setInt(4, m.getRegister());
+			pstmt.setString(1, newPW);
 			pstmt.executeUpdate();
 			System.out.println("pw 수정 성공");
 		} catch (SQLException e) {
@@ -165,13 +162,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updatePhoneNum(MemberVO m, int phoneNum) {
 		// TODO Auto-generated method stub
-		String sql = "update member set phoneNum = ?";
+		String sql = "update member set phoneNum = ? where id = '"+m.getId()+"'";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getId());
-			pstmt.setString(2, m.getPw());
-			pstmt.setInt(3, phoneNum);
+			pstmt.setInt(1, phoneNum);
 			pstmt.executeUpdate();
 			System.out.println("전화번호 수정 성공");
 		} catch (SQLException e) {
@@ -188,16 +183,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateRegister(MemberVO m, int register) {
+	public void updateRegister(MemberVO m) {
 		// TODO Auto-generated method stub
-		String sql = "update member set register = ?";
+		String sql = "update member set register = 1 where id = '" + m.getId() +"'";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getId());
-			pstmt.setString(2, m.getPw());
-			pstmt.setInt(3, m.getPhoneNum());
-			pstmt.setInt(4, register);
 			pstmt.executeUpdate();
 			System.out.println("가입승인여부 수정 성공");
 		} catch (SQLException e) {
@@ -296,7 +287,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public ArrayList<CarVO> SelectAllInsider() {
 		// TODO Auto-generated method stub
-				String sql = "select * from car where isAccepted = 1 AND guest = false";
+				String sql = "select * from car where isAccepted = 1 AND guest = 0";
 				ArrayList<CarVO> list = new ArrayList<CarVO>();
 				ResultSet rs = null;
 				Connection conn = db.getConnect();
@@ -332,7 +323,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public ArrayList<CarVO> SelectAllOutsider() {
 		// TODO Auto-generated method stub
-				String sql = "select * from car where isAccepted = 1 AND guest = true";
+				String sql = "select * from car where isAccepted = 1 AND guest = 1";
 				ArrayList<CarVO> list = new ArrayList<CarVO>();
 				ResultSet rs = null;
 				Connection conn = db.getConnect();

@@ -1,7 +1,6 @@
 package EncoreTeamProject.ParkingLot;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public interface ParkingLotDao {
 	public void Insert(int carNum);				//ÁÖÂ÷Àå data insert

@@ -5,22 +5,27 @@ import java.util.Scanner;
 import EncoreTeamProject.Car.CarService;
 import EncoreTeamProject.Car.CarServiceImpl;
 import EncoreTeamProject.Community.ComMenu;
+import EncoreTeamProject.ParkingLot.ParkingLotService;
+import EncoreTeamProject.ParkingLot.ParkingLotServiceImpl;
+import EncoreTeamProject.ParkingLot.ParkingLotTestMain;
 
 public class MemberMenu {
 	private MemberService mService; 
 	private CarService cService;
 	private ComMenu com;
+	private ParkingLotTestMain pMain;
 	
 	public MemberMenu() {
 		this.mService = new MemberServiceImpl();
 		cService = new CarServiceImpl();
 		com = new ComMenu();
+		pMain = new ParkingLotTestMain();
 	}
 	
 	public void run(Scanner sc) {
 		boolean flag = true;
 		int menu = 0;
-		String str = "1.자차조회\n  2.입출차시간조회\n  3.주차요금조회\n  4.주차요금정산\n  5.외부차량임시등록\n 6.자차등록신청\n 7.pw수정\n 8.전화번호수정\n 9.커뮤니티\n 10.종료";
+		String str = "1.자차조회\n  2.입출차시간조회\n  3.주차정보\n  4.주차요금정산\n  5.외부차량임시등록\n 6.자차등록신청\n 7.pw수정\n 8.전화번호수정\n 9.커뮤니티\n 10.종료";
 		while (flag) {
 			System.out.println(str);
 			menu = sc.nextInt();
@@ -35,7 +40,7 @@ public class MemberMenu {
 				break;
 			case 3:
 				//주차요금조회
-				mService.printParkingFee(sc);
+				pMain.run();
 				break;
 			case 4:
 				//주차요금정산
