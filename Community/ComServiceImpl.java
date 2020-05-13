@@ -15,7 +15,6 @@ public class ComServiceImpl implements ComService {
 	@Override
 	public void addCom(Scanner sc) {
 		ComVo cv = new ComVo();
-		System.out.println(StartMenu.mvo.getId());
 		cv.setName(StartMenu.mvo.getId());
 		sc.nextLine();
 		System.out.print("title:");

@@ -34,4 +34,6 @@ public interface MemberDao {
 	public ArrayList<CarVO> SelectTempCar();
 
 	public ArrayList<CarVO> SelectRegisterCar();
+	
+	public ArrayList<MemberVO> SelectYetRegisterList();
 }

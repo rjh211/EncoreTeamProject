@@ -206,7 +206,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void insertSignUp(MemberVO m) {
-		String sql = "insert into member values (?,?,?,0,-1)";
+		String sql = "insert into member values (?,?,?,0)";
 
 		Connection conn = db.getConnect();
 		try {
@@ -434,6 +434,37 @@ public class MemberDaoImpl implements MemberDao {
 				CarVO cvo = new CarVO(num, carColor, carSize, id, guest, isPayed);
 				cvo.setCarEnrollDate(carEnrollDate);
 				list.add(cvo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<MemberVO> SelectYetRegisterList() {
+		String sql = "select * from member where register = 0";
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		ResultSet rs = null;
+		Connection conn = db.getConnect();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // rs.next() 검색 결과에서 줄 이동
+				String id = rs.getString(1);
+				String pw = rs.getString(2);
+				int phoneNum = rs.getInt(3);
+				int register = rs.getInt(4);
+				MemberVO m = new MemberVO(id, pw, phoneNum, register);
+				list.add(m);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

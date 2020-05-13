@@ -210,7 +210,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void printSingUpList() {
 		// TODO Auto-generated method stub
-		ArrayList<MemberVO> memberList = mDao.selectAll();
+		ArrayList<MemberVO> memberList = mDao.SelectYetRegisterList();
 		for (MemberVO m : memberList) {
 			if (m.getRegister() == 0) { 
 				System.out.println(m);
