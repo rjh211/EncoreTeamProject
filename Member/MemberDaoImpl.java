@@ -206,7 +206,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void insertSignUp(MemberVO m) {
-		String sql = "insert into member values (?,?,?,-1)";
+		String sql = "insert into member values (?,?,?,0,-1)";
 
 		Connection conn = db.getConnect();
 		try {
@@ -214,7 +214,6 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(1, m.getId());
 			pstmt.setString(2, m.getPw());
 			pstmt.setInt(3, m.getPhoneNum());
-
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
