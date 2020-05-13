@@ -28,7 +28,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 					System.out.println("입장 불가");
 					return;
 				} 
-			}
+			} 
 			pDao.Insert(carNum);
 			cvo.setPayed(false);				//입장시 결제여부 false로 전환
 			cDao.ChangePaymentState(cvo);		//db 반영

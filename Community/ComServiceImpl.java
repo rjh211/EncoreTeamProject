@@ -2,30 +2,21 @@ package EncoreTeamProject.Community;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import EncoreTeamProject.Member.MemberServiceImpl;
-import EncoreTeamProject.Member.MemberVO;
-
-
-
-
+import EncoreTeamProject.StartMenu;
 
 public class ComServiceImpl implements ComService {
 	private ComDao dao;
-	
-	
+		
 	public ComServiceImpl(){
 		dao = new ComDaoImpl();
 		
 	}
-	
-	
-	
+		
 	@Override
 	public void addCom(Scanner sc) {
 		ComVo cv = new ComVo();
-		System.out.println(MemberServiceImpl.m.getId());
-		cv.setName(MemberServiceImpl.m.getId());
+		System.out.println(StartMenu.mvo.getId());
+		cv.setName(StartMenu.mvo.getId());
 		sc.nextLine();
 		System.out.print("title:");
 		cv.setTitle(sc.nextLine());		
@@ -33,9 +24,6 @@ public class ComServiceImpl implements ComService {
 		cv.setContents(sc.nextLine());
 	
 		dao.insert(cv);
-		
-		
-
 	}
 
 	@Override
@@ -74,7 +62,6 @@ public class ComServiceImpl implements ComService {
 		for (ComVo m : list) {
 			System.out.println(m);
 		}
-
 	}
 
 	@Override
@@ -84,7 +71,7 @@ public class ComServiceImpl implements ComService {
 		System.out.print("edit num:");
 		cv.setNum(sc.nextInt());
 		ComVo vo = dao.selectByNum(cv.getNum());
-		if(MemberServiceImpl.m.getId().equals(vo.getName())){
+		if(StartMenu.mvo.getId().equals(vo.getName())){
 		
 		System.out.print("new title:");
 		sc.nextLine();
@@ -104,13 +91,11 @@ public class ComServiceImpl implements ComService {
 		int num = sc.nextInt();
 		ComVo vo = dao.selectByNum(num);
 		String str = "a";
-		if(MemberServiceImpl.m.getId().equals(vo.getName())||str.equals(vo.getName().substring(0, 1))){
+		if(StartMenu.mvo.getId().equals(vo.getName())||str.equals(vo.getName().substring(0, 1))){
 		dao.delete(num);
 		}else{
 		System.out.print("권한자가 아닙니다.");}
 	}
-
-
 
 	@Override
 	public void selectNum(Scanner sc) {
@@ -120,8 +105,4 @@ public class ComServiceImpl implements ComService {
 		System.out.println(vo.getContents());
 		
 	}
-
-	
-	
-
 }

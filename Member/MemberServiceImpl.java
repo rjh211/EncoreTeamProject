@@ -116,7 +116,8 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			System.out.println("가입승인여부를 입력하세요. 승인은 1, 미승인은 0을 입력하세요.");
 			int register = sc.nextInt();
-			mDao.updateRegister(m, register);
+			if(register == 1)
+				mDao.updateRegister(m);
 		}
 	}
 
@@ -134,6 +135,10 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("입출차시간을 조회할 차번호를 입력하세오.");
 		int carNum = sc.nextInt();
 		ParkingLotVO pvo = pDao.SelectByCarnumforParkingLot(carNum);
+		if(pvo == null){
+			System.out.println("입 출력 기록이 없습니다.");
+			return;
+		}
 		System.out.println("들어온 시간 : " + pvo.getInputTime());
 		System.out.println("나간 시간 : " + pvo.getOutputTime());
 		/*pDao.SelectInTime(carNum);
@@ -187,7 +192,7 @@ public class MemberServiceImpl implements MemberService {
 		String carColor = "r";
 		String carSize = "s";
 		boolean guest = false;
-		boolean isPayed = false;
+		boolean isPayed = true;
 		String id = "abcd";
 		
 		System.out.println("차번호를 입력하시오");
@@ -225,6 +230,7 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("이미 가입승인된 아이디입니다.");
 		} else {
 			mVO.setRegister(1);	
+			mDao.updateRegister(mVO);
 		}
 	}
 

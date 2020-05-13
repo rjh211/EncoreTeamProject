@@ -11,7 +11,7 @@ import EncoreTeamProject.Member.MemberServiceImpl;
 import EncoreTeamProject.Member.MemberVO;
 
 public class StartMenu {
-	static MemberVO mvo = null;
+	public static MemberVO mvo = null;
 	public static void main(String[] args){
 		MemberMenu memberMenu = new MemberMenu();
 		ManagerMenu managerMenu = new ManagerMenu();

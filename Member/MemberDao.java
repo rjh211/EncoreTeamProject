@@ -17,7 +17,7 @@ public interface MemberDao {
 
 	void updatePhoneNum(MemberVO m, int phoneNum);
 
-	void updateRegister(MemberVO m, int register);
+	void updateRegister(MemberVO m);
 
 	void insertSignUp(MemberVO m);
 	
