@@ -35,7 +35,6 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setInt(4, m.getRegister());
 			// 4. 쿼리 실행
 			pstmt.executeUpdate(); // 쓰기 실행, executeQuere: 읽기 실행 select시 사용
-			System.out.println("멤버 데이터 삽입 성공");
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			System.out.println("id 중복");
 		} catch (SQLException e) {
@@ -54,15 +53,13 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		String sql = "delete from member where id = '" + id + "'  ";
+		String sql = "delete from member where id = '" + id + "'";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			int a = pstmt.executeUpdate();
 			if (a == 0) {
 				System.out.println("id 입력 오류");
-			} else {
-				System.out.println("멤버 삭제 성공");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -145,7 +142,6 @@ public class MemberDaoImpl implements MemberDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, newPW);
 			pstmt.executeUpdate();
-			System.out.println("pw 수정 성공");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,7 +164,6 @@ public class MemberDaoImpl implements MemberDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, phoneNum);
 			pstmt.executeUpdate();
-			System.out.println("전화번호 수정 성공");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,12 +180,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updateRegister(MemberVO m) {
 		// TODO Auto-generated method stub
-		String sql = "update member set register = 1 where id = '" + m.getId() +"'";
+		String sql = "update member set register = 1 m isaccepted = 1 where id = '" + m.getId() +"'";
 		Connection conn = db.getConnect();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("가입승인여부 수정 성공");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -206,7 +200,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void insertSignUp(MemberVO m) {
-		String sql = "insert into member values (?,?,?,0)";
+		String sql = "insert into member values (?,?,?,0,-1)";
 
 		Connection conn = db.getConnect();
 		try {
@@ -267,7 +261,6 @@ public class MemberDaoImpl implements MemberDao {
 
 			pstmt.setInt(1, number);
 			pstmt.executeUpdate();
-			System.out.println("승인되었습니다.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

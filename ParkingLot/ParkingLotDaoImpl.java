@@ -28,7 +28,6 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 			pstmt.setTimestamp(1, java.sql.Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.setInt(2, carNum);
 			pstmt.executeUpdate();		
-			System.out.println("데이터 삽입 성공");
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +50,6 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			int a = pstmt.executeUpdate();		//쓰기 실행 , executeQuere => 읽기 실행 select시 사용
 			if(a == 0) System.out.println("Sequance 입력 오류");
-			else System.out.println("데이터 삭제 성공");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,8 +174,6 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			if(pstmt.executeUpdate() == 0){
 				System.out.println("차량 번호 입력 오류");
-			}else{				
-				System.out.println("데이터 수정 성공");
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -206,8 +202,6 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
 			pstmt.setInt(4, pvo.getCarNumber());
 			if(pstmt.executeUpdate() == 0){
 				System.out.println("시퀀스 입력 오류");
-			}else{				
-				System.out.println("데이터 수정 성공");
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
