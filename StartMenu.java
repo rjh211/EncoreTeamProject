@@ -29,8 +29,9 @@ public class StartMenu {
 				if(login(sc)==1){
 					if(mvo.getId().startsWith("a")){
 						managerMenu.run(sc);
+					} else{						
+						memberMenu.run(sc);				
 					}
-					memberMenu.run(sc);				
 				}
 				break;
 			case 2:
@@ -38,6 +39,7 @@ public class StartMenu {
 				break;
 			case 3: 
 				flag = false;
+				break;
 			}
 		}
 	}
@@ -73,6 +75,4 @@ public class StartMenu {
 		}
 
 	}
-	
-
 }

@@ -30,8 +30,8 @@ public class ComDaoImpl implements ComDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(2,com.getName());
 			pstmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+			pstmt.setString(2,com.getName());
 			pstmt.setString(3,com.getTitle());
 			pstmt.setString(4, com.getContents());
 			

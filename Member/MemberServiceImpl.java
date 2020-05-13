@@ -221,7 +221,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void acceptSignUP(Scanner sc) {
 		// TODO Auto-generated method stub
-		System.out.print("가입승인신청 리스트 중에서 가입승인할 id를 입력해주세요. id : ");
+		System.out.println("가입승인신청 리스트 중에서 가입승인할 id를 입력해주세요. id : ");
 		String id = sc.next();
 		MemberVO mVO = mDao.selectByID(id);
 		if (mVO == null) {
