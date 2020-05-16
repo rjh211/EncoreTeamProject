@@ -77,7 +77,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberVO selectByID(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from member where id = '" + id + "'  ";
+		String sql = "select * from member where id = " + "'id'";
 		ResultSet rs = null;
 		Connection conn = db.getConnect();
 		MemberVO m = null;
@@ -222,34 +222,32 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 
+
 	@Override
-	public int checkId(String id) {
-		String sql = "select id from member where id = ?";
-
-		ResultSet rs = null;
-		Connection conn = db.getConnect();
-
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				return -1;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+	public int checkID(String id) {
+		// TODO Auto-generated method stub
+			int result = 0;
+			
+			String sql = "select * from member where id='" + id + "'";
+			Connection conn = db.getConnect();
+			ResultSet rs = null;
+		
 			try {
-				conn.close();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery(sql);
+				 
+				if (rs.next() == false || (id.isEmpty()) == true) { // id°¡ Á¸Àçx
+		                result = 0;
+	            } else {
+	            	result = 1;
+	            }
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		return 1;
-	}
+			return result;
+		}   
 
 	@Override
 	public void GrantCar(int number) {
