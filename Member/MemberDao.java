@@ -22,8 +22,8 @@ public interface MemberDao {
 	void insertSignUp(MemberVO m);
 	
 	void updateCarAccept(int carnumber);
-
-	int checkId(String id);
+	
+	public int checkID(String id);
 
 	public void GrantCar(int number);
 
