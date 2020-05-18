@@ -255,9 +255,9 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("입주민 등록 신청");
 		while (true) {
 
-			System.out.print("id:");
+			System.out.print("id : ");
 			String id = sc.next();
-			if (mDao.checkId(id) == 1) {
+			if (mDao.checkID(id) == 0) {
 				m.setId(id);
 				break;
 			} else {
@@ -269,6 +269,7 @@ public class MemberServiceImpl implements MemberService {
 
 		System.out.println("phonenum:");
 		m.setPhoneNum(sc.nextInt());
+		
 		mDao.insertSignUp(m);
 	}
 	

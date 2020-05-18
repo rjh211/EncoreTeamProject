@@ -3,8 +3,6 @@ package EncoreTeamProject;
 import java.util.Scanner;
 
 import EncoreTeamProject.Member.ManagerMenu;
-import EncoreTeamProject.Member.MemberDao;
-import EncoreTeamProject.Member.MemberDaoImpl;
 import EncoreTeamProject.Member.MemberMenu;
 import EncoreTeamProject.Member.MemberService;
 import EncoreTeamProject.Member.MemberServiceImpl;
@@ -16,6 +14,7 @@ public class StartMenu {
 		MemberMenu memberMenu = new MemberMenu();
 		ManagerMenu managerMenu = new ManagerMenu();
 		MemberService mService = new MemberServiceImpl();
+		Login login = new Login();
 		
 		boolean flag = true;
 		int menu = 0;		
@@ -26,8 +25,8 @@ public class StartMenu {
 			menu = sc.nextInt();
 			switch(menu){
 			case 1:
-				if(login(sc)==1){
-					if(mvo.getId().startsWith("a")){
+				if(login.checkIDPW(sc) == 1){
+					if(login.id.startsWith("a")){
 						managerMenu.run(sc);
 					} else{						
 						memberMenu.run(sc);				
@@ -42,37 +41,5 @@ public class StartMenu {
 				break;
 			}
 		}
-	}
- static int login(Scanner sc) {
-		MemberDao mDao = new MemberDaoImpl();
-
-		while (true) {
-			System.out.print("id:");
-			String loginId = sc.next();
-			MemberVO v = mDao.selectByID(loginId);
-			if (v == null) {
-				System.out.println("잘못된 id입니다.다시입력하세요.");
-
-			} else if (loginId.equals(v.getId())) {
-				
-				mvo=v;
-				System.out.print("pw:");
-				String pw = sc.next();
-				
-				if (pw.equals(v.getPw())) {
-					
-					if(v.getRegister()==1){
-						System.out.println("로그인 성공~");						
-						return 1;
-					}else{
-						System.out.println("관리인의 수락 필요합니다.");
-						return -1;
-					}
-				} else {
-					System.out.println("틀린 pwd입니다. 다시 입력하세요.");
-				}
-			}
-		}
-
 	}
 }
